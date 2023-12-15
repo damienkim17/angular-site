@@ -1,0 +1,89 @@
+<div id="mapid" style="width:100%;height:800px"></div>
+  <section class="table-responsive">
+    <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="">Location</th>
+            <td mat-cell *matCellDef="let row">{{row.location}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Reported By</th>
+            <td mat-cell *matCellDef="let row">{{row.reporter}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Reported On</th>
+            <td mat-cell *matCellDef="let row">{{row.dateTime | date: 'short'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let row">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="info">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header=""></th>
+            <td mat-cell *matCellDef="let i = index">
+                <button mat-raised-button color="primary" (click)="moreInfo(i)">More Info</button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="retrieve">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let i = index">
+                <button mat-raised-button color="primary" (click)="checkPassRetrieve(i)">Retrieve</button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header=""> </th>
+            <td mat-cell *matCellDef="let i = index">
+                <button mat-raised-button color="primary" (click)="checkPassDel(i)">Delete</button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </section>
+  <section class="text-center">
+    <button id="close" class="btn btn-default">Create Pig Report</button>
+  </section>
+  <form [formGroup]="reportForm">
+    <section class="form-group">
+      <label for="inputName">Name: </label>
+      <input type="text" class="form-control" name="myName" formControlName="myName" placeholder="Enter a name">
+    </section>
+    <section class="form-group">
+      <label for="inputPhone">Phone Number: </label>
+      <input type="tel" class="form-control" name="inputPhone" formControlName="inputPhone" placeholder="Enter a phone number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+    </section>
+    <section class="form-group">
+        <label for="inputLocation">Location: </label>
+        <input type="text" class="form-control" name="inputLocation" formControlName="inputLocation" placeholder="Enter a Location">
+    </section>
+    <section class="form-group">
+        <label for="inputLatitude">Latitude: </label>
+        <input type="number" class="form-control" name="inputLatitude" formControlName="inputLatitude" placeholder="Enter a latitude">
+      </section>
+      <section class="form-group">
+        <label for="inputLongitude">Longitude: </label>
+        <input type="number" class="form-control" name="inputLongitude" formControlName="inputLongitude" placeholder="Enter a longitude">
+      </section>
+    <section class="form-group">
+      <label for="inputBreed">Breed: </label>
+      <input type="text" class="form-control" id="inputBreed" placeholder="Enter a breed">
+    </section>
+    <section class="form-group">
+      <label for="inputPid">PID: </label>
+      <input type="number" class="form-control" id="inputPid" placeholder="Enter a PID">
+    </section>
+    <section class="form-group">
+      <label for="inputExtra">Extra Notes: </label>
+      <input type="text" class="form-control" id="inputExtra" placeholder="Enter extra notes">
+    </section>
+  <section class="text-center">
+    <button class="btn btn-primary" (click)="submitForm()">Submit</button>
+  </section>
+  <section class="text-center">
+    <button class="btn btn-primary" (click)="delete()">Delete</button>
+  </section>

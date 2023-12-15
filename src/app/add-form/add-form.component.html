@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>New Pig Report</h1>
+<form [formGroup]="reportForm">
+    <section class="form-group">
+      <label for="inputName">Name: </label>
+      <input type="text" class="form-control" name="myName" formControlName="myName" placeholder="Enter a name">
+    </section>
+    <section class="form-group">
+      <label for="inputPhone">Phone Number: </label>
+      <input type="tel" class="form-control" name="inputPhone" formControlName="inputPhone" placeholder="Enter a phone number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+    </section>
+    <section class="form-group">
+        <label for="inputLocation">Location: </label>
+        <input type="text" class="form-control" name="inputLocation" formControlName="inputLocation" placeholder="Enter a Location">
+    </section>
+    <section class="form-group">
+        <label for="inputLatitude">Latitude: </label>
+        <input type="number" class="form-control" name="inputLatitude" formControlName="inputLatitude" placeholder="Enter a latitude">
+      </section>
+      <section class="form-group">
+        <label for="inputLongitude">Longitude: </label>
+        <input type="number" class="form-control" name="inputLongitude" formControlName="inputLongitude" placeholder="Enter a longitude">
+      </section>
+    <!-- <section class="form-group">
+      <label for="inputBreed">Breed: </label>
+      <input type="text" class="form-control" id="inputBreed" placeholder="Enter a breed">
+    </section>
+    <section class="form-group">
+      <label for="inputPid">PID: </label>
+      <input type="number" class="form-control" id="inputPid" placeholder="Enter a PID">
+    </section>
+    <section class="form-group">
+      <label for="inputExtra">Extra Notes: </label>
+      <input type="text" class="form-control" id="inputExtra" placeholder="Enter extra notes">
+    </section> -->
+    <section class="text-center">
+        <button class="btn btn-primary" (click)="submit()">Submit</button>
+    </section>
+</form>
